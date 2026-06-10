@@ -15,4 +15,15 @@ class Referral extends Model
       'status',
 
     ];
+
+    public function visit()
+    {
+        return $this->belongsTo(Visit::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
 }

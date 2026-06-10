@@ -19,5 +19,14 @@ class Screening extends Model
     'referred_to_doctor'
     ];
     
+    public function visit()
+    {
+        return $this->hasOne(Visit::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }   
 
 }

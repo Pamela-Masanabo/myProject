@@ -19,5 +19,15 @@ protected $fillable =[
   'is_elderly'
     
   ];
+
+  public function consultation()
+  {
+    return $this->hasMany(Consultation::class);
+  }
+
+  public function patient()
+  {
+    return $this->belongsTo(Patient::class);
+  }
        
 }

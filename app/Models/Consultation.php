@@ -19,15 +19,15 @@ class Consultation extends Model
     ];
 
 
-    // defining the relationship
+    // defining the relationships
+    public function visit()
+    {
+        return $this->belongsTo(Visit::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }   
     
-
-
-// public visit {
-//   this->hasOne->class::Visit
-// }
-// public user {
-//     This->belongsTo->class::User();
-// }
-
 }
