@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('visits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')
-            ->constrained()->onDelete('cascade');
+            $table->foreignId('patient_id')->constrained()->onDelete('cascade');
            $table->enum('reason',[
                 'GENERAL_CONSULTATION',
                 'CHRONIC_MEDICATION',

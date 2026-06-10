@@ -16,15 +16,11 @@ return new class extends Migration
             $table->foreignId('visit_id')->constrained()->onDelete('cascade');
         //who referred the patient
             $table->foreignId('referred_by')->constrained('users')->onDelete('cascade');
-        //referral type
-            $table->enum('referral_type', [
-                'DOCTOR',
-                'HOSPITAL'
-            ]);
+      
         //REFERRAL DETAILS 
-             $table->text('reason');
-             $table->string('hospital_name')->nullable();
-             $table->text('referral_notes')->nullable();
+            $table->text('referral_reason')->nullable();
+            $table->string('referral_hospital_name')->nullable();   
+            $table->string('specialist_name')->nullable();
         //STATUS
             $table->enum('status', [
                 'PENDING',

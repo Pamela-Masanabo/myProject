@@ -19,13 +19,14 @@ return new class extends Migration
             //CONSULTATION DETAILS
             $table->text('diagnosis')->nullable();
             $table->text('medication')->nullable();
-            $table->text('dosage_instructions')->nullable(); 
+            $table->text('dosage_instructions')->nullable();
             $table->text('notes')->nullable();
            //follow up details
             $table->date('next_visit_date')->nullable();
             //referal details
             $table->boolean('referred_to_doctor')->default(false);
             $table->boolean('hospital_referral')->default(false);
+           
             $table->timestamps();
         });
     }

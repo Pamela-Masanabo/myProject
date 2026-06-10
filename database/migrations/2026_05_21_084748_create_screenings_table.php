@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('screenings', function (Blueprint $table) {
             $table->id();
     //WHICH VISIT THIS SCREENING BELONGS TO
-            $table->foreignId('visit_id')
-            ->constrained()->onDelete('cascade');
+            $table->foreignId('visit_id')->constrained()->onDelete('cascade');
     //WHICH STAFF NURSE DID THE SCREENING
               $table->foreignId('user_id')->constrained()
               ->onDelete('cascade');
@@ -24,7 +23,6 @@ return new class extends Migration
               $table->unsignedInteger('blood_pressure')->nullable();
               $table->unsignedInteger('weight')->nullable();
               $table->unsignedInteger('pulse_rate')->nullable();
-
     //PRIORITY LEVELS  
                $table->enum('priority_level', [
                 'NORMAL',           
