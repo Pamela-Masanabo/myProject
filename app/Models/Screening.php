@@ -21,7 +21,7 @@ class Screening extends Model
     
     public function visit()
     {
-        return $this->hasOne(Visit::class);
+        return $this->belongsTo(Visit::class);
     }
 
     public function user()

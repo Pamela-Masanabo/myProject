@@ -19,4 +19,15 @@ class Patient extends Model
        'city',
        'code'
     ];
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }  
+
+    public function maternityRecords()
+    {
+       return $this->hasMany(MaternityRecord::class);
+    }
+
 }

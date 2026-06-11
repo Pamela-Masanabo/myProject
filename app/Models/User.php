@@ -31,6 +31,22 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function consultations()
+    {
+        return $this->hasMany(Consultation::class);
+    }
+
+    public function screenings()
+    {
+        return $this->hasMany(Screening::class);
+    }   
+
+    public function referrals()
+    {
+        return $this->hasMany(Referral::class, 'referred_by');
+    }   
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

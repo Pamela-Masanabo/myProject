@@ -20,7 +20,7 @@ protected $fillable =[
     
   ];
 
-  public function consultation()
+  public function consultations()
   {
     return $this->hasMany(Consultation::class);
   }
@@ -29,5 +29,14 @@ protected $fillable =[
   {
     return $this->belongsTo(Patient::class);
   }
-       
+   
+  public function screening(){
+     return $this->hasOne(Screening::class);  
+  }
+
+  public function referrals(){
+    return $this->hasMany(Referral::class); 
+  }
+
+
 }
