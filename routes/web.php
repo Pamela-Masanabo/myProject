@@ -7,6 +7,9 @@ use App\Http\Controllers\ReceptionController;
 use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\VisitController;
+use App\Http\Controllers\PatientController;
+use App\Models\Visit;
 
 Route::get('/', function () {
     return view('welcome');
@@ -103,6 +106,28 @@ Route::middleware(['auth','role:DOCTOR'])
 
 });
 
+/*
+|--------------------------------------------------------------------------
+| Visit
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
 
+    Route::get('/check-in',[VisitController::class,'create'])->name('visit.create');
+    Route::post('/check-in',[VisitController::class,'store'])->name('visit.store');
+
+});
+/*
+|--------------------------------------------------------------------------
+| Patient
+|--------------------------------------------------------------------------
+*/
+Route::get('/',[PatientController::class,'welcome'])->name('welcome');
+Route::get('/patient/login',[PatientController::class,'showLogin'])->name('patient.login');
+Route::post('/patient/login',[PatientController::class,'login'])->name('patient.login.store');
+Route::get('/patient/register',[PatientController::class,'create'])->name('patient.register');
+Route::post('/patient/register',[PatientController::class,'store'])->name('patient.store');
+
+Route::get('/patient/dashboard',[PatientController::class,'dashboard'])->name('patient.dashboard');
 
 require __DIR__.'/auth.php';
