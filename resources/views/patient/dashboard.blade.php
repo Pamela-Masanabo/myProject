@@ -1,61 +1,118 @@
-<h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ asset('css/patient-dashboard.css') }}   ">
+</head>
+<body>
+<div class="container">
 
-Welcome
+    <!-- HEADER -->
 
-{{ $patient->first_name }}
+    <div class="header">
 
-</h1>
+        <h2>
 
+            Welcome,
 
-<div>
+            {{ $patient->first_name }}
 
-    <h3>Patient Information</h3>
-
-    <p>
-
-        ID:
-
-        {{ $patient->id_number }}
-
-    </p>
-
-</div>
-
-
-<div>
-
-    <h3>Today's Status</h3>
-
-    @if($latestVisit)
+        </h2>
 
         <p>
 
-            {{ $latestVisit->status }}
+            Public Clinic System
 
         </p>
 
-    @else
+    </div>
+@if(session('error'))
 
-        <p>
+<div class="error">
 
-            No active visit.
-
-        </p>
-
-    @endif
+    {{ session('error') }}
 
 </div>
 
-
-<a href="{{ route('visit.create') }}">
-
-    Start Visit
-
-</a>
+@endif
 
 
-<a href="#">
+@if(session('success'))
 
-    View History
+<div class="success">
 
-</a>
+    {{ session('success') }}
+
+</div>
+
+@endif
+    <!-- STATUS CARD -->
+
+    <div class="status-card">
+
+        <h3>
+
+            Today's Status
+
+        </h3>
+
+        @if($latestVisit)
+
+            <p>
+
+                Status:
+
+                {{ $latestVisit->status }}
+
+            </p>
+
+            <p>
+
+                Queue Number:
+
+                {{ $latestVisit->queue_number ?? 'Not Assigned Yet' }}
+
+            </p>
+
+        @else
+
+            <p>
+
+                No active visit today.
+
+            </p>
+
+        @endif
+
+    </div>
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+        <a href="{{ route('visit.create') }}"
+
+           class="btn">
+
+           Start Visit
+
+        </a>
+
+        <a href="#" class="btn">
+           View History
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- CHATBOT -->
+
+@include('partials.chatbot')
+
+</body>
+
+</html>

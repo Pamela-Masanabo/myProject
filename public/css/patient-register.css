@@ -1,0 +1,75 @@
+body{
+
+    margin:0;
+
+    font-family:Arial,sans-serif;
+
+    background:#f4f6f9;
+}
+
+.container{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+}
+
+.card{
+
+    width:650px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+}
+
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#0b5394;
+
+    color:white;
+
+    cursor:pointer;
+}

@@ -49,6 +49,39 @@ public function create()
     return view('patient.register');
 }
 
+public function store(Request $request)
+{
+    $validated = $request->validate([
+
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'id_number' => 'required|unique:patients',
+        'date_of_birth' => 'required|date',
+        'age' => 'nullable|integer',
+        'gender' => 'required',
+        'race' => 'nullable',
+        'phone' => 'nullable',
+        'address' => 'nullable',
+        'city' => 'nullable',
+        'code' => 'nullable',
+
+    ]);
+
+    Patient::create($validated);
+
+    return redirect()
+
+        ->route('patient.login')
+
+        ->with(
+
+            'success',
+
+            'Registration successful. Please login.'
+
+        );
+}
+
 public function login(Request $request)
 {
     $request->validate([
