@@ -24,81 +24,43 @@ method="POST">
 
 @csrf
 
-<label>
+<label>Reason For Visit</label>
 
-Reason For Visit
+<select name="reason_for_visit" required>
 
-</label>
+<option value="">Select Reason</option>
 
-<select
+@foreach($visitTypes as $visit)
 
-name="reason_for_visit"
+        <option value="{{ $visit['value'] }}">
 
-required>
+            {{ $visit['label'] }}
 
-<option value="">
+        </option>
 
-Select
-
-</option>
-
-<option value="GENERAL_CONSULTATION">
-
-General Consultation
-
-</option>
-
-<option value="CHRONIC_MEDICATION">
-
-Chronic Medication
-
-</option>
-
-<option value="PEDIATRIC_CARE">
-
-Pediatric Care
-
-</option>
-
-<option value="MATERNITY">
-
-Maternity
-
-</option>
+    @endforeach
 
 </select>
 
-<h3>
+<!-- Guadian Information Section -->
 
-Guardian Information
+<div id="guardianSection" style="display:none;">
 
-(Optional)
+    <h3>Guardian Information</h3>
 
-</h3>
+    <input type="text"
+           name="guardian_name"
+           placeholder="Guardian Name">
 
-<input
+    <input type="text"
+           name="guardian_relationship"
+           placeholder="Relationship">
 
-type="text"
+    <input type="text"
+           name="guardian_phone"
+           placeholder="Phone Number">
 
-name="guardian_name"
-
-placeholder="Guardian Name">
-
-<input
-
-type="text"
-
-name="guardian_relationship"
-
-placeholder="Relationship">
-
-<input
-
-type="text"
-
-name="guardian_phone"
-
-placeholder="Phone Number">
+</div>
 
 <label>
 
@@ -127,3 +89,24 @@ Start Visit
 </body>
 
 </html>
+
+<!-- JavaScript to toggle guardian section based on visit reason -->
+ <script>
+
+const reason = document.querySelector('[name="reason_for_visit"]');
+const guardian = document.getElementById('guardianSection');
+
+reason.addEventListener('change', function(){
+
+    if(this.value === 'PEDIATRIC_CARE'){
+
+        guardian.style.display = 'block';
+
+    }else{
+
+        guardian.style.display = 'none';
+    }
+
+});
+
+</script>

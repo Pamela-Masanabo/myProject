@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Visit;
 use App\Models\Patient;
+use App\Models\MaternityRecord;
 use Carbon\Carbon;
 
 class VisitController extends Controller
@@ -15,8 +16,42 @@ class VisitController extends Controller
     {
         return redirect()->route('patient.login');
     }
-    
-    return view('patient.check-in');
+     $patient = Patient::find(session('patient_id'));
+
+    $age = Carbon::parse($patient->date_of_birth)->age;
+
+    $visitTypes = [];
+
+    // Everyone can have a general consultation
+    $visitTypes[] = [
+        'value' => 'GENERAL_CONSULTATION',
+        'label' => 'General Consultation'
+    ];
+
+    // Children
+    if ($age < 18) {
+        $visitTypes[] = [
+            'value' => 'PEDIATRIC_CARE',
+            'label' => 'Pediatric Care'
+        ];
+    }
+
+    // Female patients
+    if ($patient->gender == 'FEMALE') {
+
+        $visitTypes[] = [
+            'value' => 'MATERNITY',
+            'label' => 'Maternity'
+        ];
+    }
+
+    // Chronic Programme
+    // We'll improve this once we build chronic enrolment
+
+    return view('patient.check-in', compact(
+        'patient',
+        'visitTypes'
+    ));
 }
 
 public function store(Request $request)

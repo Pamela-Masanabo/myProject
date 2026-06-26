@@ -30,4 +30,8 @@ class Patient extends Model
        return $this->hasMany(MaternityRecord::class);
     }
 
+    public function chronicRecords()
+    {
+        return $this->hasMany(ChronicRecord::class);
+    }
 }

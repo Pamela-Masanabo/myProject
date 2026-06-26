@@ -49,12 +49,8 @@ Route::middleware(['auth','role:RECEPTIONIST'])
 
     ->group(function () {
 
-        Route::get('/reception/dashboard',
-
-            [ReceptionController::class,'index'])
-
-            ->name('reception.dashboard');
-
+        Route::get('/reception/dashboard',[ReceptionController::class,'index'])->name('reception.dashboard');
+        Route::post('/reception/verify/{visit}',[ReceptionController::class,'verify'])->name('visit.verify');   
 });
 
 /*
