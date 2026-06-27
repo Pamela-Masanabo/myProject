@@ -22,13 +22,14 @@ public function index()
     );
 }
 
-public function verify(Visit $visit)
+public function generateQueue(Visit $visit)
 {
     $prefix = match($visit->reason){
         'GENERAL_CONSULTATION' => 'G',
         'CHRONIC_MEDICATION' => 'C',
         'PEDIATRIC_CARE' => 'P',
-        'MATERNITY' => 'M'
+        'MATERNITY' => 'M',
+        'default' => 'G'
     };  
     
     $count = Visit::whereDate(
@@ -40,16 +41,21 @@ public function verify(Visit $visit)
         'queue_number'
     )->count();
 
-    $visit->queue_number = $prefix . str_pad(
-       $count + 1,
-       3,
-         '0',
-        STR_PAD_LEFT 
-    );
+     $queue = $prefix .
+        str_pad($count + 1, 3, '0', STR_PAD_LEFT);
 
-    $visit->status = 'WAITING_SCREENING';
-    $visit->save();
-    return back();
+    $visit->update([
+
+        'queue_number' => $queue,
+
+        'status' => 'WAITING_SCREENING'
+
+    ]);
+
+    return back()->with(
+        'success',
+        'Queue number generated successfully.'
+    );
 } 
 
 }

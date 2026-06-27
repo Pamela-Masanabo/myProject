@@ -50,7 +50,7 @@ Route::middleware(['auth','role:RECEPTIONIST'])
     ->group(function () {
 
         Route::get('/reception/dashboard',[ReceptionController::class,'index'])->name('reception.dashboard');
-        Route::post('/reception/verify/{visit}',[ReceptionController::class,'verify'])->name('visit.verify');   
+        Route::post('/reception/generate-queue/{visit}',[ReceptionController::class,'generateQueue'])->name('reception.generateQueue');   
 });
 
 /*
@@ -64,14 +64,24 @@ Route::middleware(['auth','role:STAFF_NURSE'])
 
         Route::get('/screening/dashboard',
 
-            [ScreeningController::class,'index'])
-
+            [ScreeningController::class,'dashboard'])
             ->name('screening.dashboard');
+        
+        Route::get('/screening/{visit}',
+        [ScreeningController::class,'create'])
+        ->name('screening.create');
+
+        Route::post('/screening/{visit}',
+        [ScreeningController::class,'store'])
+        ->name('screening.store');
+        
+        
 });
+
 
 /*
 |--------------------------------------------------------------------------
-| Professional Nurse
+| Professional Nurse [consultation]
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
@@ -79,11 +89,21 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
     ->group(function () {
 
         Route::get('/consultation/dashboard',
-
-            [ConsultationController::class,'index'])
-
+            [ConsultationController::class,'dashboard'])
             ->name('consultation.dashboard');
-});
+
+         Route::get(
+        '/consultation/{visit}',
+        [ConsultationController::class,'create']
+    )->name('consultation.create');
+
+    Route::post(
+        '/consultation/{visit}',
+        [ConsultationController::class,'store']
+    )->name('consultation.store');
+
+
+      });
 /*
 |--------------------------------------------------------------------------
 | Doctor
