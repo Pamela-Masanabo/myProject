@@ -1,0 +1,120 @@
+body{
+
+    background:#eef3f8;
+
+    font-family:Arial;
+
+    margin:0;
+
+    padding:30px;
+
+}
+
+.container{
+
+    width:1000px;
+
+    margin:auto;
+
+}
+
+.card{
+
+    background:white;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+    color:#6A1B9A;
+
+    margin-bottom:20px;
+
+}
+
+label{
+
+    display:block;
+
+    margin-top:15px;
+
+    margin-bottom:8px;
+
+    font-weight:bold;
+
+}
+
+textarea,
+input[type=text],
+input[type=date],
+input[type=number]{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    box-sizing:border-box;
+
+}
+
+.checkbox{
+
+    margin:18px 0;
+
+}
+
+.checkbox input{
+
+    margin-right:10px;
+
+}
+
+.priority{
+
+    background:#FB8C00;
+
+    color:white;
+
+    padding:6px 12px;
+
+    border-radius:15px;
+
+}
+
+.save-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    background:#6A1B9A;
+
+    color:white;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+.save-btn:hover{
+
+    background:#4A148C;
+
+}

@@ -109,16 +109,19 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
 | Doctor
 |--------------------------------------------------------------------------
 */
+Route::middleware(['auth','role:DOCTOR'])->group(function(){
 
-Route::middleware(['auth','role:DOCTOR'])
+    Route::get('/doctor/dashboard',
+        [DoctorController::class,'dashboard'])
+        ->name('doctor.dashboard');
 
-    ->group(function () {
+    Route::get('/doctor/consultation/{visit}',
+        [DoctorController::class,'consultation'])
+        ->name('doctor.consultation');
 
-        Route::get('/doctor/dashboard',
-
-            [DoctorController::class,'index'])
-
-            ->name('doctor.dashboard');
+    Route::post('/doctor/consultation/{visit}',
+        [DoctorController::class,'store'])
+        ->name('doctor.store');
 
 });
 
