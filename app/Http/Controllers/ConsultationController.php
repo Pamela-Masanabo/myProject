@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Visit;
 use App\Models\Consultation;
 use App\Models\Referral;
@@ -98,7 +99,7 @@ class ConsultationController extends Controller
 
                 'visit_id' => $visit->id,
 
-                //'referred_by' => auth()->id(),
+                'referred_by' => Auth::id(),
 
                 'referral_reason' => $validated['diagnosis'],
 

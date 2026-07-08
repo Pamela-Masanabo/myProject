@@ -15,7 +15,8 @@ class Consultation extends Model
         'notes',
         'next_visit_date',
         'referred_to_doctor',
-        'hospital_referral'
+        'hospital_referral',
+        'consultation_type'
     ];
 
 
