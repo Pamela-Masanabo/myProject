@@ -1,0 +1,224 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef3f8;
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+
+.container{
+
+    width:90%;
+    max-width:1200px;
+    margin:40px auto;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.header{
+
+    background:#0B5394;
+    color:white;
+    padding:30px;
+    border-radius:15px;
+    margin-bottom:25px;
+
+}
+
+.header h1{
+
+    font-size:34px;
+    margin-bottom:10px;
+
+}
+
+.header p{
+
+    font-size:18px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.card{
+
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+}
+
+.card h2{
+
+    margin-bottom:20px;
+    color:#0B5394;
+}
+
+/* ===========================
+   INFORMATION BOX
+=========================== */
+
+.info-box{
+
+    background:#EAF3FC;
+    padding:20px;
+    border-radius:10px;
+    margin-top:15px;
+
+}
+
+.info-box p{
+
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+.info-box strong{
+
+    color:#0B5394;
+}
+
+/* ===========================
+   LABELS
+=========================== */
+
+label{
+
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#333;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#0B5394;
+    outline:none;
+
+}
+
+/* ===========================
+   GUARDIAN SECTION
+=========================== */
+
+.guardian{
+
+    background:#FFF7DD;
+    border-left:6px solid #FFC107;
+}
+
+/* ===========================
+   TEXTAREA
+=========================== */
+
+textarea{
+
+    resize:vertical;
+    min-height:120px;
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.btn{
+
+    width:100%;
+    background:#0B5394;
+    color:white;
+    border:none;
+    padding:15px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    background:#083B6F;
+
+}
+
+/* ===========================
+   ERROR MESSAGES
+=========================== */
+
+.alert{
+
+    background:#F8D7DA;
+    color:#721C24;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   SUCCESS MESSAGE
+=========================== */
+
+.success{
+
+    background:#D4EDDA;
+    color:#155724;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+    .container{
+
+        width:95%;
+
+    }
+
+    .header h1{
+
+        font-size:28px;
+
+    }
+
+}

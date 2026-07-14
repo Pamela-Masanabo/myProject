@@ -130,12 +130,11 @@ Route::middleware(['auth','role:DOCTOR'])->group(function(){
 | Visit
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->group(function () {
 
-    Route::get('/check-in',[VisitController::class,'create'])->name('visit.create');
-    Route::post('/check-in',[VisitController::class,'store'])->name('visit.store');
+    Route::get('/patient/check-in',[VisitController::class,'create'])->name('visit.create');
+    Route::post('/patient/check-in',[VisitController::class,'store'])->name('visit.store');
 
-});
+
 /*
 |--------------------------------------------------------------------------
 | Patient

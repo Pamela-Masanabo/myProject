@@ -111,7 +111,7 @@
 
 <!-- CHATBOT -->
 
-@include('partials.chatbot')
+
 
 </body>
 
