@@ -9,6 +9,7 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ProfessionalNurseController;   
 use App\Models\Visit;
 
 Route::get('/', function () {
@@ -87,6 +88,15 @@ Route::middleware(['auth','role:STAFF_NURSE'])
 Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
 
     ->group(function () {
+
+     Route::get(
+        '/professional-nurse/dashboard',
+        [ProfessionalNurseController::class,'dashboard']
+    )->name('professional.dashboard');
+
+
+
+
 
         Route::get('/consultation/dashboard',
             [ConsultationController::class,'dashboard'])

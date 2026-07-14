@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 class ConsultationController extends Controller
 {
+    
      public function dashboard()
     {
         $visits = Visit::with([
@@ -24,7 +25,7 @@ class ConsultationController extends Controller
         ->get();
 
         return view(
-            'consultation.dashboard',
+            'professional-nurse.dashboard',
             compact('visits')
         );
     }
@@ -37,7 +38,7 @@ class ConsultationController extends Controller
         ]);
 
         return view(
-            'consultation.consultation',
+            'professional-nurse.consultation',
             compact('visit')
         );
     }
