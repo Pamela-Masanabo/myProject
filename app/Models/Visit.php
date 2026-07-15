@@ -35,7 +35,7 @@ protected $fillable =[
   }
 
   public function referrals(){
-    return $this->hasMany(Referral::class); 
+    return $this->hasOne(Referral::class); 
   }
 
 

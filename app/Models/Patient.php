@@ -30,8 +30,20 @@ class Patient extends Model
        return $this->hasMany(MaternityRecord::class);
     }
 
-    public function chronicRecords()
+    public function chronicRecord()
     {
-        return $this->hasMany(ChronicRecord::class);
+        return $this->hasOne(ChronicRecord::class);
     }
+
+    public function consultations()
+{
+    return $this->hasManyThrough(
+        Consultation::class,
+        Visit::class,
+        'patient_id',
+        'visit_id',
+        'id',
+        'id'
+    );
+}
 }

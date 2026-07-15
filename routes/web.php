@@ -10,6 +10,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfessionalNurseController;   
+use App\Http\Controllers\ChronicController; 
 use App\Models\Visit;
 
 Route::get('/', function () {
@@ -94,23 +95,31 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
         [ProfessionalNurseController::class,'dashboard']
     )->name('professional.dashboard');
 
-
-
-
-
-        Route::get('/consultation/dashboard',
-            [ConsultationController::class,'dashboard'])
-            ->name('consultation.dashboard');
-
-         Route::get(
-        '/consultation/{visit}',
-        [ConsultationController::class,'create']
-    )->name('consultation.create');
+     Route::get(
+        '/professional-nurse/consultation/{visit}',
+        [ProfessionalNurseController::class,'create']
+    )->name('professional_nurse.consultation');
 
     Route::post(
-        '/consultation/{visit}',
-        [ConsultationController::class,'store']
-    )->name('consultation.store');
+        '/professional-nurse/consultation/{visit}',
+        [ProfessionalNurseController::class,'store']
+    )->name('professional_nurse.store'); 
+
+    //Chronic Record
+    Route::get(
+        '/chronic/dashboard',
+        [ChronicController::class,'dashboard']
+    )->name('chronic.dashboard');
+
+    Route::get(
+        '/chronic/process/{visit}',
+        [ChronicController::class,'process']
+    )->name('chronic.process');
+
+    Route::post(
+        '/chronic/process/{visit}',
+        [ChronicController::class,'store']
+    )->name('chronic.store');
 
 
       });
