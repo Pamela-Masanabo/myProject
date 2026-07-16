@@ -34,7 +34,7 @@ protected $fillable =[
      return $this->hasOne(Screening::class);  
   }
 
-  public function referrals(){
+  public function referral(){
     return $this->hasOne(Referral::class); 
   }
 

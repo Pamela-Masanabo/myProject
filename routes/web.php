@@ -11,6 +11,10 @@ use App\Http\Controllers\VisitController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfessionalNurseController;   
 use App\Http\Controllers\ChronicController; 
+use App\Http\Controllers\KidsController;
+use App\Http\Controllers\PatientHistoryController;  
+use App\Http\Controllers\ReferralController;    
+use App\Http\Controllers\MaternityController;   
 use App\Models\Visit;
 
 Route::get('/', function () {
@@ -80,7 +84,6 @@ Route::middleware(['auth','role:STAFF_NURSE'])
         
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Professional Nurse [consultation]
@@ -120,6 +123,43 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
         '/chronic/process/{visit}',
         [ChronicController::class,'store']
     )->name('chronic.store');
+
+    //Kids
+    Route::get(
+        '/kids/dashboard',
+        [KidsController::class,'dashboard']
+    )->name('kids.dashboard');
+
+    Route::get(
+        '/kids/consultation/{visit}',
+        [KidsController::class,'create']
+    )->name('kids.consultation');
+
+    Route::post(
+        '/kids/consultation/{visit}',
+        [KidsController::class,'store']
+    )->name('kids.store');
+
+    //MATERNITY
+
+Route::middleware(['auth','role:PROFESSIONAL_NURSE'])->group(function () {
+
+    Route::get(
+        '/maternity/dashboard',
+        [MaternityController::class,'dashboard']
+    )->name('maternity.dashboard');
+
+    Route::get(
+        '/maternity/consultation/{visit}',
+        [MaternityController::class,'create']
+    )->name('maternity.consultation');
+
+    Route::post(
+        '/maternity/consultation/{visit}',
+        [MaternityController::class,'store']
+    )->name('maternity.store');
+
+});
 
 
       });
@@ -166,5 +206,38 @@ Route::get('/patient/register',[PatientController::class,'create'])->name('patie
 Route::post('/patient/register',[PatientController::class,'store'])->name('patient.store');
 
 Route::get('/patient/dashboard',[PatientController::class,'dashboard'])->name('patient.dashboard');
+
+//PATIENT HISTORY
+Route::get('/patient/history',[PatientHistoryController::class,'index']
+)->name('patient.history');
+
+/*
+|--------------------------------------------------------------------------
+| Referral
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+
+    Route::get(
+        '/referrals/dashboard',
+        [ReferralController::class,'dashboard']
+    )->name('referrals.dashboard');
+
+    Route::get(
+        '/referrals/{referral}',
+        [ReferralController::class,'show']
+    )->name('referrals.show');
+
+    Route::get(
+        '/referrals/{referral}/letter',
+        [ReferralController::class,'letter']
+    )->name('referrals.letter');
+
+    Route::post(
+        '/referrals/{referral}/issue',
+        [ReferralController::class,'markIssued']
+    )->name('referrals.issue');
+
+});
 
 require __DIR__.'/auth.php';

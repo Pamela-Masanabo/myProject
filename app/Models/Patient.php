@@ -25,9 +25,9 @@ class Patient extends Model
         return $this->hasMany(Visit::class);
     }  
 
-    public function maternityRecords()
+    public function maternityRecord()
     {
-       return $this->hasMany(MaternityRecord::class);
+       return $this->hasOne(MaternityRecord::class);
     }
 
     public function chronicRecord()
@@ -46,4 +46,7 @@ class Patient extends Model
         'id'
     );
 }
+
+
+
 }
