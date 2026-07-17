@@ -25,11 +25,24 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+         // Check if the authenticated user is active
+       $user = Auth::user();
+
+    if (!$user->is_active) {
+
+        Auth::logout();
+
+        return back()->withErrors([
+            'email' => 'Your account has been deactivated. Please contact the administrator.',
+        ]);
+    }
 
         $request->session()->regenerate();
 
         return redirect()->intended(route('dashboard', absolute: false));
-    }
+
+
+        }
 
     /**
      * Destroy an authenticated session.

@@ -12,6 +12,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfessionalNurseController;   
 use App\Http\Controllers\ChronicController; 
 use App\Http\Controllers\KidsController;
+USE App\Http\Controllers\StaffController;
 use App\Http\Controllers\PatientHistoryController;  
 use App\Http\Controllers\ReferralController;    
 use App\Http\Controllers\MaternityController;   
@@ -36,14 +37,59 @@ Route::middleware('auth')->group(function () {
 | Admin
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth','role:ADMIN'])
-->group(function () {
+// Route::middleware(['auth','role:ADMIN'])
+// ->group(function () {
+//     Route::get('/admin/dashboard',
+//     [AdminController::class, 'index'])
+//     ->name('admin.dashboard');  
+
+Route::middleware(['auth'])->group(function(){
+
     Route::get('/admin/dashboard',
-    [AdminController::class, 'index'])
-    ->name('admin.dashboard');  
+        [AdminController::class,'dashboard']
+    )->name('admin.dashboard');
     
 Route::get('/admin/register-staff',[AdminController::class,'create'])->name('staff.create');
 Route::post('/admin/register-staff',[AdminController::class,'store'])->name('staff.store');
+});
+
+/*
+|--------------------------------------------------------------------------
+| STAFF
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get(
+        '/admin/staff',
+        [StaffController::class,'index']
+    )->name('staff.index');
+
+    Route::get(
+        '/admin/staff/create',
+        [StaffController::class,'create']
+    )->name('staff.create');
+
+    Route::post(
+        '/admin/staff',
+        [StaffController::class,'store']
+    )->name('staff.store');
+
+    Route::get(
+        '/admin/staff/{user}/edit',
+        [StaffController::class,'edit']
+    )->name('staff.edit');
+
+    Route::put(
+        '/admin/staff/{user}',
+        [StaffController::class,'update']
+    )->name('staff.update');
+
+    Route::patch(
+        '/admin/staff/{user}/status',
+        [StaffController::class,'toggleStatus']
+    )->name('staff.status');
 });
 
 /*

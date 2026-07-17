@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Visit;
+use App\Models\Referral;
+use App\Models\ChronicRecord;
+use App\Models\MaternityRecord;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -63,6 +68,58 @@ class AdminController extends Controller
             ->with('success', 'Staff account created successfully.');
     }
 
-    
+public function dashboard()
+    {
+        $today = Carbon::today();
+
+        $patientsToday = Visit::whereDate('created_at', $today)->count();
+
+        $waitingScreening = Visit::where('status', 'WAITING_SCREENING')->count();
+
+        $waitingDoctor = Visit::where('status', 'WAITING_DOCTOR')->count();
+
+        $completedVisits = Visit::where('status', 'COMPLETED')->count();
+
+        $referrals = Referral::count();
+
+        $chronicPatients = ChronicRecord::count();
+
+        $maternityPatients = MaternityRecord::count();
+
+        $staff = User::count();
+
+        $queue = Visit::with('patient')
+            ->whereIn('status', [
+                'WAITING_SCREENING',
+                'WAITING_DOCTOR',
+                'SCREENING',
+                'CONSULTATION'
+            ])
+            ->orderBy('queue_number')
+            ->get();
+
+        return view('admin.dashboard', compact(
+
+            'patientsToday',
+
+            'waitingScreening',
+
+            'waitingDoctor',
+
+            'completedVisits',
+
+            'referrals',
+
+            'chronicPatients',
+
+            'maternityPatients',
+
+            'staff',
+
+            'queue'
+
+        ));
+        
+    }
 
 }
