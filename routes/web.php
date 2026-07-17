@@ -238,6 +238,22 @@ Route::middleware(['auth'])->group(function () {
         [ReferralController::class,'markIssued']
     )->name('referrals.issue');
 
+    Route::post(
+
+    '/referrals/{referral}/review',
+
+    [ReferralController::class,'markReviewed']
+
+)->name('referrals.review');
+
+Route::post(
+
+    '/referrals/{referral}/complete',
+
+    [ReferralController::class,'complete']
+
+)->name('referrals.complete');
+
 });
 
 require __DIR__.'/auth.php';

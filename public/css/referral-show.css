@@ -1,0 +1,104 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#eef3f8;
+    padding:40px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    margin-bottom:25px;
+    color:#455A64;
+}
+
+.card{
+    background:#fff;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:#455A64;
+    margin-bottom:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+th{
+    width:250px;
+    background:#f7f7f7;
+}
+
+.status{
+    background:#FFC107;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+.actions form{
+    display:inline;
+}
+
+button{
+    border:none;
+    padding:12px 22px;
+    border-radius:6px;
+    cursor:pointer;
+    color:white;
+    font-size:15px;
+}
+
+.print-btn{
+    background:#1976D2;
+}
+
+.review-btn{
+    background:#FB8C00;
+}
+
+.complete-btn{
+    background:#43A047;
+}
+
+.back-btn{
+    background:#616161;
+}
+
+.success-message{
+    background:#E8F5E9;
+    color:#2E7D32;
+    border:1px solid #A5D6A7;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:20px;
+}
