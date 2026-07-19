@@ -15,59 +15,59 @@
 
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
+        <!-- Sidebar -->
+        <div class="sidebar">
 
-        <h2>Clinic Admin</h2>
+            <h2>Clinic Admin</h2>
 
-        <ul>
+            <ul>
 
-            <li>
-                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
-            </li>
+                <li>
+                    <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                </li>
 
-            <li class="active">
-                <a href="{{ route('staff.index') }}">Staff Management</a>
-            </li>
+                <li class="active">
+                    <a href="{{ route('staff.index') }}">Staff Management</a>
+                </li>
 
-            <li>
-                <a href="#">Room Management</a>
-            </li>
+                <li>
+                    <a href="#">Room Management</a>
+                </li>
 
-            <li>
-                <a href="#">Reports</a>
-            </li>
+                <li>
+                    <a href="#">Reports</a>
+                </li>
 
-            <li>
-                <a href="{{ route('referrals.dashboard') }}">Referrals</a>
-            </li>
+                <li>
+                    <a href="{{ route('referrals.dashboard') }}">Referrals</a>
+                </li>
 
-            <li>
-                <a href="#">Logout</a>
-            </li>
+                <li>
+                    <a href="#">Logout</a>
+                </li>
 
-        </ul>
-
-    </div>
-
-    <!-- Main Content -->
-    <div class="main">
-
-        <div class="page-header">
-
-            <h1>Staff Management</h1>
-
-            <a href="{{ route('staff.create') }}" class="add-btn">
-
-                + Add Staff
-
-            </a>
+            </ul>
 
         </div>
 
-        @if(session('success'))
+        <!-- Main Content -->
+        <div class="main">
+
+            <div class="page-header">
+
+                <h1>Staff Management</h1>
+
+                <a href="{{ route('staff.create') }}" class="add-btn">
+
+                    + Add Staff
+
+                </a>
+
+            </div>
+
+            @if(session('success'))
 
             <div class="success">
 
@@ -75,110 +75,120 @@
 
             </div>
 
-        @endif
+            @endif
+            
+            @if(session('error'))
 
-        <!-- Search & Filter -->
+            <div class="error">
 
-        <form method="GET" action="{{ route('staff.index') }}">
-
-            <div class="filters">
-
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Search by name or Employee ID..."
-                    value="{{ request('search') }}">
-
-                <select name="role">
-
-                    <option value="">All Roles</option>
-
-                    <option value="ADMIN"
-                        {{ request('role') == 'ADMIN' ? 'selected' : '' }}>
-                        Administrator
-                    </option>
-
-                    <option value="RECEPTIONIST"
-                        {{ request('role') == 'RECEPTIONIST' ? 'selected' : '' }}>
-                        Receptionist
-                    </option>
-
-                    <option value="STAFF_NURSE"
-                        {{ request('role') == 'STAFF_NURSE' ? 'selected' : '' }}>
-                        Staff Nurse
-                    </option>
-
-                    <option value="PROFESSIONAL_NURSE"
-                        {{ request('role') == 'PROFESSIONAL_NURSE' ? 'selected' : '' }}>
-                        Professional Nurse
-                    </option>
-
-                    <option value="DOCTOR"
-                        {{ request('role') == 'DOCTOR' ? 'selected' : '' }}>
-                        Doctor
-                    </option>
-
-                </select>
-
-                <button type="submit">
-
-                    Search
-
-                </button>
+                {{ session('error') }}
 
             </div>
 
-        </form>
+            @endif
 
-        <!-- Staff Table -->
+            <!-- Search & Filter -->
 
-        <div class="table-container">
+            <form method="GET" action="{{ route('staff.index') }}">
 
-            <table>
+                <div class="filters">
 
-                <thead>
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search by name or Employee ID..."
+                        value="{{ request('search') }}">
 
-                <tr>
+                    <select name="role">
 
-                    <th>Employee ID</th>
+                        <option value="">All Roles</option>
 
-                    <th>Name</th>
+                        <option value="ADMIN"
+                            {{ request('role') == 'ADMIN' ? 'selected' : '' }}>
+                            Administrator
+                        </option>
 
-                    <th>Role</th>
+                        <option value="RECEPTIONIST"
+                            {{ request('role') == 'RECEPTIONIST' ? 'selected' : '' }}>
+                            Receptionist
+                        </option>
 
-                    <th>Department</th>
+                        <option value="STAFF_NURSE"
+                            {{ request('role') == 'STAFF_NURSE' ? 'selected' : '' }}>
+                            Staff Nurse
+                        </option>
 
-                    <th>Status</th>
+                        <option value="PROFESSIONAL_NURSE"
+                            {{ request('role') == 'PROFESSIONAL_NURSE' ? 'selected' : '' }}>
+                            Professional Nurse
+                        </option>
 
-                    <th>Actions</th>
+                        <option value="DOCTOR"
+                            {{ request('role') == 'DOCTOR' ? 'selected' : '' }}>
+                            Doctor
+                        </option>
 
-                </tr>
+                    </select>
 
-                </thead>
+                    <button type="submit">
 
-                <tbody>
+                        Search
 
-                @forelse($staff as $member)
+                    </button>
 
-                    <tr>
+                </div>
 
-                        <td>{{ $member->employee_id }}</td>
+            </form>
 
-                        <td>
+            <!-- Staff Table -->
 
-                            {{ $member->first_name }}
+            <div class="table-container">
 
-                            {{ $member->last_name }}
+                <table>
 
-                        </td>
+                    <thead>
 
-                        <td>{{ str_replace('_',' ', $member->role) }}</td>
+                        <tr>
 
-                        <td>{{ str_replace('_',' ', $member->department) }}</td>
+                            <th>Employee ID</th>
 
-                        <td>
+                            <th>Name</th>
 
-                            @if($member->is_active)
+                            <th>Role</th>
+
+                            <th>Department</th>
+
+                            <th>Status</th>
+
+                            <th>Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @forelse($staff as $member)
+
+                        <tr>
+
+                            <td>{{ $member->employee_id }}</td>
+
+                            <td>
+
+                                {{ $member->first_name }}
+
+                                {{ $member->last_name }}
+
+                            </td>
+
+                            <td>{{ str_replace('_',' ', $member->role) }}</td>
+
+                            <td>{{ str_replace('_',' ', $member->department) }}</td>
+
+                            <td>
+
+                                @if($member->is_active)
 
                                 <span class="badge active">
 
@@ -186,7 +196,7 @@
 
                                 </span>
 
-                            @else
+                                @else
 
                                 <span class="badge inactive">
 
@@ -194,70 +204,70 @@
 
                                 </span>
 
-                            @endif
+                                @endif
 
-                        </td>
+                            </td>
 
-                        <td>
+                            <td>
 
-                            <a href="{{ route('staff.edit',$member->id) }}"
-                               class="edit-btn">
+                                <a href="{{ route('staff.edit',$member->id) }}"
+                                    class="edit-btn">
 
-                                Edit
+                                    Edit
 
-                            </a>
+                                </a>
 
-                            <form
-                                action="{{ route('staff.status',$member->id) }}"
-                                method="POST"
-                                class="inline-form">
+                                <form
+                                    action="{{ route('staff.status',$member->id) }}"
+                                    method="POST"
+                                    class="inline-form">
 
-                                @csrf
+                                    @csrf
 
-                                @method('PATCH')
+                                    @method('PATCH')
 
-                                <button
-                                    class="{{ $member->is_active ? 'deactivate-btn' : 'activate-btn' }}">
+                                    <button
+                                        class="{{ $member->is_active ? 'deactivate-btn' : 'activate-btn' }}">
 
-                                    {{ $member->is_active ? 'Deactivate' : 'Activate' }}
+                                        {{ $member->is_active ? 'Deactivate' : 'Activate' }}
 
-                                </button>
+                                    </button>
 
-                            </form>
+                                </form>
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @empty
+                        @empty
 
-                    <tr>
+                        <tr>
 
-                        <td colspan="6">
+                            <td colspan="6">
 
-                            No staff members found.
+                                No staff members found.
 
-                        </td>
+                            </td>
 
-                    </tr>
+                        </tr>
 
-                @endforelse
+                        @endforelse
 
-                </tbody>
+                    </tbody>
 
-            </table>
+                </table>
 
-        </div>
+            </div>
 
-        <div class="pagination">
+            <div class="pagination">
 
-            {{ $staff->links() }}
+                {{ $staff->links() }}
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </body>
 

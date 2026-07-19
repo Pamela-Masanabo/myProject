@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
@@ -140,6 +141,15 @@ class StaffController extends Controller
      */
     public function toggleStatus(User $user)
     {
+        // Prevent an administrator from deactivating themselves
+    if ($user->id === Auth::id()) {
+
+        return back()->with(
+            'error',
+            'You cannot deactivate your own account.'
+        );
+    }
+
         $user->update([
 
             'is_active' => !$user->is_active
