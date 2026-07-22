@@ -49,8 +49,8 @@ Route::middleware(['auth'])->group(function(){
         [AdminController::class,'dashboard']
     )->name('admin.dashboard');
     
-Route::get('/admin/register-staff',[AdminController::class,'create'])->name('staff.create');
-Route::post('/admin/register-staff',[AdminController::class,'store'])->name('staff.store');
+//Route::get('/admin/register-staff',[AdminController::class,'create'])->name('staff.create');
+//Route::post('/admin/register-staff',[AdminController::class,'store'])->name('staff.store');
 });
 
 /*

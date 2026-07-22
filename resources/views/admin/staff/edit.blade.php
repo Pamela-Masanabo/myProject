@@ -168,49 +168,35 @@
 
                 <div class="input-group">
 
-                    <label>Department</label>
+    <label>Department</label>
 
-                    <select name="department" required>
+    <select name="department" required>
 
-                        <option value="GENERAL_SCREENING"
-                            {{ $user->department=='GENERAL_SCREENING'?'selected':'' }}>
-                            General Screening
-                        </option>
+        <option value="">Select Department</option>
 
-                        <option value="PEDIATRIC_SCREENING"
-                            {{ $user->department=='PEDIATRIC_SCREENING'?'selected':'' }}>
-                            Pediatric Screening
-                        </option>
+        <option value="ADMINISTRATION"
+            {{ old('department') == 'ADMINISTRATION' ? 'selected' : '' }}>
+            Administration
+        </option>
 
-                        <option value="MATERNITY_SCREENING"
-                            {{ $user->department=='MATERNITY_SCREENING'?'selected':'' }}>
-                            Maternity Screening
-                        </option>
+        <option value="RECEPTION"
+            {{ old('department') == 'RECEPTION' ? 'selected' : '' }}>
+            Reception
+        </option>
 
-                        <option value="GENERAL"
-                            {{ $user->department=='GENERAL'?'selected':'' }}>
-                            General
-                        </option>
+        <option value="SCREENING"
+            {{ old('department') == 'SCREENING' ? 'selected' : '' }}>
+            Screening
+        </option>
 
-                        <option value="PEDIATRIC"
-                            {{ $user->department=='PEDIATRIC'?'selected':'' }}>
-                            Pediatrics
-                        </option>
+        <option value="CONSULTATION"
+            {{ old('department') == 'CONSULTATION' ? 'selected' : '' }}>
+            Consultation
+        </option>
 
-                        <option value="MATERNITY"
-                            {{ $user->department=='MATERNITY'?'selected':'' }}>
-                            Maternity
-                        </option>
+    </select>
 
-                        <option value="CHRONIC"
-                            {{ $user->department=='CHRONIC'?'selected':'' }}>
-                            Chronic Care
-                        </option>
-
-                    </select>
-
-                </div>
-
+</div>
             </div>
 
             <div class="input-group">

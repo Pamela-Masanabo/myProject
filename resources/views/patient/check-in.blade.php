@@ -26,7 +26,7 @@ method="POST">
 
 <label>Reason For Visit</label>
 
-<select name="reason_for_visit" required>
+<select name="reason" required>
 
 <option value="">Select Reason</option>
 
@@ -57,7 +57,7 @@ method="POST">
            placeholder="Relationship">
 
     <input type="text"
-           name="guardian_phone"
+           name="guardian_contact"
            placeholder="Phone Number">
 
 </div>
@@ -93,7 +93,7 @@ Start Visit
 <!-- JavaScript to toggle guardian section based on visit reason -->
  <script>
 
-const reason = document.querySelector('[name="reason_for_visit"]');
+const reason = document.querySelector('[name="reason"]');
 const guardian = document.getElementById('guardianSection');
 
 reason.addEventListener('change', function(){

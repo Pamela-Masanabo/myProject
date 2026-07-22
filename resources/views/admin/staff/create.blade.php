@@ -135,6 +135,7 @@
 
                     <select name="role" required>
 
+
                         <option value="">Select Role</option>
 
                         <option value="ADMIN">Administrator</option>
@@ -153,33 +154,37 @@
 
                 <div class="input-group">
 
-                    <label>Department</label>
+    <label>Department</label>
 
-                    <select name="department" required>
+    <select name="department" required>
 
-                        <option value="">Select Department</option>
+        <option value="">Select Department</option>
 
-                        <option value="GENERAL_SCREENING">General Screening</option>
+        <option value="ADMINISTRATION"
+            {{ old('department') == 'ADMINISTRATION' ? 'selected' : '' }}>
+            Administration
+        </option>
 
-                        <option value="PEDIATRIC_SCREENING">Pediatric Screening</option>
+        <option value="RECEPTION"
+            {{ old('department') == 'RECEPTION' ? 'selected' : '' }}>
+            Reception
+        </option>
 
-                        <option value="MATERNITY_SCREENING">Maternity Screening</option>
+        <option value="SCREENING"
+            {{ old('department') == 'SCREENING' ? 'selected' : '' }}>
+            Screening
+        </option>
 
-                        <option value="GENERAL">General</option>
+        <option value="CONSULTATION"
+            {{ old('department') == 'CONSULTATION' ? 'selected' : '' }}>
+            Consultation
+        </option>
 
-                        <option value="PEDIATRIC">Pediatrics</option>
-
-                        <option value="MATERNITY">Maternity</option>
-
-                        <option value="CHRONIC">Chronic Care</option>
-
-                    </select>
-
+    </select>
                 </div>
+</div>
 
-            </div>
-
-            <div class="input-group">
+            <!-- <div class="input-group">
 
                 <label>Specialty</label>
 
@@ -188,7 +193,7 @@
                     name="specialty"
                     value="{{ old('specialty') }}">
 
-            </div>
+            </div> -->
 
             <div class="row">
 
