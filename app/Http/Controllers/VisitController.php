@@ -50,71 +50,95 @@ class VisitController extends Controller
 
     return view('patient.check-in', compact(
         'patient',
-        'visitTypes'
+        'visitTypes',
+        'age'
     ));
 }
-
 public function store(Request $request)
 {
-    if(!session()->has('patient_id'))
-    {
+    if (!session()->has('patient_id')) {
         return redirect()->route('patient.login');
     }
+
     $validated = $request->validate([
+        'reason' => 'required|in:GENERAL_CONSULTATION,CHRONIC_MEDICATION,PEDIATRIC_CARE,MATERNITY',
 
-        'reason_for_visit' => 'required',
+        'guardian_name' => 'nullable|string|max:255',
 
-        'guardian_name' => 'nullable',
+        'guardian_relationship' =>
+            'nullable|in:MOTHER,FATHER,GRANDPARENT,GUARDIAN',
 
-        'guardian_relationship' => 'nullable',
+        'guardian_contact' => 'nullable|string|max:20',
 
-        'guardian_phone' => 'nullable',
+        'notes' => 'nullable|string',
+    ]);
 
-        'additional_notes' => 'nullable'
+    $patient = Patient::findOrFail(session('patient_id'));
+
+    $age = Carbon::parse($patient->date_of_birth)->age;
+
+    if ($age < 18) {
+
+    $request->validate([
+        'guardian_name' => 'required|string|max:255',
+
+        'guardian_relationship' =>
+            'required|in:MOTHER,FATHER,GRANDPARENT,GUARDIAN',
+
+        'guardian_contact' =>
+            'required|string|max:20',
+    ]);
+}
+    // Check if patient already has an active visit today
+    $existingVisit = Visit::where('patient_id', $patient->id)
+        ->whereDate('created_at', today())
+        ->whereNotIn('status', [
+            'COMPLETED',
+            'LEFT'
+        ])
+        ->first();
+
+    if ($existingVisit) {
+
+        return redirect()
+            ->route('patient.dashboard')
+            ->with(
+                'error',
+                'You already have an active visit today.'
+            );
+    }
+
+    // Create visit
+    Visit::create([
+
+        'patient_id' => $patient->id,
+
+        'reason' => $validated['reason'],
+
+        'notes' => $validated['notes'] ?? null,
+
+        'guardian_name' =>
+            $validated['guardian_name'] ?? null,
+
+        'guardian_relationship' =>
+            $validated['guardian_relationship'] ?? null,
+
+        'guardian_contact' =>
+            $validated['guardian_contact'] ?? null,
+
+        'is_elderly' => $age >= 65,
+
+        'status' => 'CHECKED_IN',
+
+        'queue_number' => null,
 
     ]);
 
-    $patient = Patient::find(session('patient_id')); 
-    $age = Carbon::parse($patient->date_of_birth)->age; 
-    $existingVisit = Visit::where(
-
-        'patient_id',
-
-        $patient->id
-
-    )->whereDate(
-        'created_at',today()
-
-    )->whereNotIn(
-        'status',
-        [
-            'COMPLETED',
-            'LEFT'
-        ]
-    )->first();
-
-    if($existingVisit)
-{
     return redirect()
-
         ->route('patient.dashboard')
-
-        ->with('error','You already have an active visit today.'
-
+        ->with(
+            'success',
+            'Visit started successfully.'
         );
-}
-    Visit::create([
-        'patient_id' => $patient->id,
-        'reason' => $validated['reason'],
-        'guardian_name' => $validated['guardian_name'] ?? null,
-        'guardian_relationship' => $validated['guardian_relationship'] ?? null,
-        'guardian_contact' => $validated['guardian_contact'] ?? null,
-        'notes' => $validated['notes'] ?? null,
-        'status' => 'CHECKED_IN',
-        'queue_number' => null,
-        'is_elderly' => $age >= 65, 
-    ]); 
-     return redirect()->route('patient.dashboard')->with('success', 'Visit started successfully.');
-
 }
 }

@@ -1,112 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Check-In</title>
-    <link rel="stylesheet" href="{{ asset('css/check-in.css') }}">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Check-In</title>
+
+    <link rel="stylesheet"
+          href="{{ asset('css/check-in.css') }}">
+
 </head>
-<body>
-    
+
 <body>
 
 <div class="container">
 
-<div class="card">
+    <div class="card">
 
-<h2>🏥 Start Visit</h2>
+        <h2>🏥 Start Visit</h2>
 
-<form
+        <p class="subtitle">
+            Please provide the information below to start your clinic visit.
+        </p>
 
-action="{{ route('visit.store') }}"
 
-method="POST">
+        {{-- Validation Errors --}}
+        @if ($errors->any())
 
-@csrf
+            <div class="error-message">
 
-<label>Reason For Visit</label>
+                <strong>Please correct the following:</strong>
 
-<select name="reason" required>
+                <ul>
 
-<option value="">Select Reason</option>
+                    @foreach ($errors->all() as $error)
 
-@foreach($visitTypes as $visit)
+                        <li>{{ $error }}</li>
 
-        <option value="{{ $visit['value'] }}">
+                    @endforeach
 
-            {{ $visit['label'] }}
+                </ul>
 
-        </option>
+            </div>
 
-    @endforeach
+        @endif
 
-</select>
 
-<!-- Guadian Information Section -->
+        {{-- Check-In Form --}}
+        <form action="{{ route('visit.store') }}"
+              method="POST">
 
-<div id="guardianSection" style="display:none;">
+            @csrf
 
-    <h3>Guardian Information</h3>
 
-    <input type="text"
-           name="guardian_name"
-           placeholder="Guardian Name">
+            {{-- Reason For Visit --}}
+            <div class="form-group">
 
-    <input type="text"
-           name="guardian_relationship"
-           placeholder="Relationship">
+                <label for="reason">
+                    Reason For Visit
+                </label>
 
-    <input type="text"
-           name="guardian_contact"
-           placeholder="Phone Number">
+                <select
+                    name="reason"
+                    id="reason"
+                    required>
 
-</div>
+                    <option value="">
+                        Select Reason
+                    </option>
 
-<label>
+                    @foreach($visitTypes as $visit)
 
-Additional Notes
+                        <option
+                            value="{{ $visit['value'] }}"
+                            {{ old('reason') == $visit['value'] ? 'selected' : '' }}>
 
-</label>
+                            {{ $visit['label'] }}
 
-<textarea
+                        </option>
 
-name="additional_notes">
+                    @endforeach
 
-</textarea>
+                </select>
 
-<button type="submit">
+            </div>
 
-Start Visit
 
-</button>
+            {{-- Guardian Information --}}
+            <div
+                @if($age < 18)
 
-</form>
+    <div class="guardian-section">
 
-</div>
+        <h3>Guardian Information</h3>
+
+        <p class="section-note">
+            Guardian information is required for patients under 18.
+        </p>
+
+        <div class="form-group">
+            <label for="guardian_name">Guardian Name</label>
+
+            <input
+                type="text"
+                id="guardian_name"
+                name="guardian_name"
+                value="{{ old('guardian_name') }}"
+                placeholder="Enter guardian full name"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="guardian_relationship">Relationship</label>
+
+            <select
+                name="guardian_relationship"
+                id="guardian_relationship"
+                required>
+
+                <option value="">Select Relationship</option>
+
+                <option value="MOTHER"
+                    {{ old('guardian_relationship') == 'MOTHER' ? 'selected' : '' }}>
+                    Mother
+                </option>
+
+                <option value="FATHER"
+                    {{ old('guardian_relationship') == 'FATHER' ? 'selected' : '' }}>
+                    Father
+                </option>
+
+                <option value="GRANDPARENT"
+                    {{ old('guardian_relationship') == 'GRANDPARENT' ? 'selected' : '' }}>
+                    Grandparent
+                </option>
+
+                <option value="GUARDIAN"
+                    {{ old('guardian_relationship') == 'GUARDIAN' ? 'selected' : '' }}>
+                    Guardian
+                </option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="guardian_contact">Guardian Phone Number</label>
+
+            <input
+                type="text"
+                id="guardian_contact"
+                name="guardian_contact"
+                value="{{ old('guardian_contact') }}"
+                placeholder="Enter phone number"
+                required>
+        </div>
+
+    </div>
+
+@endif
+            </div>
+
+
+            {{-- Additional Notes --}}
+            <div class="form-group">
+
+                <label for="notes">
+                    Additional Notes
+                </label>
+
+                <textarea
+                    name="notes"
+                    id="notes"
+                    rows="5"
+                    placeholder="Enter any additional information about your visit">{{ old('notes') }}</textarea>
+
+            </div>
+
+
+            {{-- Buttons --}}
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="start-visit-btn">
+
+                    Start Visit
+
+                </button>
+
+                <a
+                    href="{{ route('patient.dashboard') }}"
+                    class="cancel-btn">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
 
 </div>
 
 </body>
 
 </html>
-
-<!-- JavaScript to toggle guardian section based on visit reason -->
- <script>
-
-const reason = document.querySelector('[name="reason"]');
-const guardian = document.getElementById('guardianSection');
-
-reason.addEventListener('change', function(){
-
-    if(this.value === 'PEDIATRIC_CARE'){
-
-        guardian.style.display = 'block';
-
-    }else{
-
-        guardian.style.display = 'none';
-    }
-
-});
-
-</script>
