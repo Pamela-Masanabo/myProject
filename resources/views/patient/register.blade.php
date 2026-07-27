@@ -1,125 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Registration</title>
-    <link rel="stylesheet" href="{{ asset('css/patient-register.css') }}">  
+    <link rel="stylesheet" href="{{ asset('css/patient-register.css') }}">
 </head>
+
 <body>
-<div class="container">
+    <div class="container">
 
-    <div class="card">
+        <div class="card">
 
-        <h2>🏥 Patient Registration</h2>
+            <h2>🏥 Patient Registration</h2>
 
-        <form
+            <form
 
-            action="{{ route('patient.store') }}"
+                action="{{ route('patient.store') }}"
 
-            method="POST">
+                method="POST">
 
-            @csrf
+                @csrf
 
-            <div class="grid">
+                <div class="grid">
+
+                    <input
+
+                        type="text"
+
+                        name="first_name"
+
+                        placeholder="First Name"
+
+                        required>
+
+                    <input
+
+                        type="text"
+
+                        name="last_name"
+
+                        placeholder="Last Name"
+
+                        required>
+
+                </div>
+
+                <input
+                    type="text"
+                    name="id_number"
+                    value="{{ old('id_number') }}" 
+                    minlength="13"
+                    maxlength="13"
+                    pattern="[0-9]{13}"
+                    inputmode="numeric"
+                    required>
+
+                <div class="grid">
+
+                    <input
+
+                        type="date"
+
+                        name="date_of_birth"
+
+                        required>
+
+                    <select
+
+                        name="gender"
+
+                        required>
+
+                        <option value="">
+
+                            Gender
+
+                        </option>
+
+                        <option value="MALE">
+
+                            Male
+
+                        </option>
+
+                        <option value="FEMALE">
+
+                            Female
+
+                        </option>
+
+                    </select>
+
+                </div>
 
                 <input
 
                     type="text"
 
-                    name="first_name"
+                    name="phone"
 
-                    placeholder="First Name"
+                    placeholder="Phone Number">
 
-                    required>
+                <textarea
 
-                <input
+                    name="address"
 
-                    type="text"
-
-                    name="last_name"
-
-                    placeholder="Last Name"
-
-                    required>
-
-            </div>
-
-            <input
-
-                type="text"
-
-                name="id_number"
-
-                placeholder="ID Number"
-
-                required>
-
-            <div class="grid">
-
-                <input
-
-                    type="date"
-
-                    name="date_of_birth"
-
-                    required>
-
-                <select
-
-                    name="gender"
-
-                    required>
-
-                    <option value="">
-
-                        Gender
-
-                    </option>
-
-                    <option value="MALE">
-
-                        Male
-
-                    </option>
-
-                    <option value="FEMALE">
-
-                        Female
-
-                    </option>
-
-                </select>
-
-            </div>
-
-            <input
-
-                type="text"
-
-                name="phone"
-
-                placeholder="Phone Number">
-
-            <textarea
-
-                name="address"
-
-                placeholder="Address">
+                    placeholder="Address">
 
             </textarea>
 
-            <button type="submit">
+                <button type="submit">
 
-                Register
+                    Register
 
-            </button>
+                </button>
 
-        </form>
+            </form>
+
+        </div>
 
     </div>
-
-</div>
 
 </body>
 

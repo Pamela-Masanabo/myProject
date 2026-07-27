@@ -88,15 +88,20 @@ public function dashboard()
 
         $staff = User::count();
 
-        $queue = Visit::with('patient')
-            ->whereIn('status', [
-                'WAITING_SCREENING',
-                'WAITING_DOCTOR',
-                'SCREENING',
-                'CONSULTATION'
-            ])
-            ->orderBy('queue_number')
-            ->get();
+       $queue = Visit::with('patient')
+    ->whereDate('created_at', $today)
+    ->whereIn('status', [
+        'CHECKED_IN',
+        'WAITING_SCREENING',
+        'IN_SCREENING',
+        'WAITING_CONSULTATION',
+        'WAITING_DOCTOR',
+        'IN_CONSULTATION',
+        'REFERRED',
+        'RETURNED'
+    ])
+    ->orderBy('queue_number')
+    ->get();
 
         return view('admin.dashboard', compact(
 

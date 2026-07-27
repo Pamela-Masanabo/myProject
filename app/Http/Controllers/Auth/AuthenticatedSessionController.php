@@ -39,11 +39,45 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.dashboard'));
+switch ($user->role) {
 
+    case 'ADMIN':
+
+        return redirect()->route('admin.dashboard');
+
+
+    case 'RECEPTIONIST':
+
+        return redirect()->route('reception.dashboard');
+
+
+    case 'STAFF_NURSE':
+
+        return redirect()->route('screening.dashboard');
+
+
+    case 'PROFESSIONAL_NURSE':
+
+        return redirect()->route('consultation.dashboard');
+
+
+    case 'DOCTOR':
+
+        return redirect()->route('doctor.dashboard');
+
+
+    default:
+
+        Auth::logout();
+
+        return redirect()
+            ->route('login')
+            ->withErrors([
+                'username' => 'Your account does not have a valid staff role.',
+            ]);
 
         }
-
+    }
     /**
      * Destroy an authenticated session.
      */
