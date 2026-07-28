@@ -12,7 +12,7 @@ class ScreeningController extends Controller
 
         $visits = Visit::with('patient')
             ->where('status','WAITING_SCREENING')
-            ->where('reason_for_visit','GENERAL_CONSULTATION')
+            ->where('reason','GENERAL_CONSULTATION')
             ->orderBy('queue_number')
             ->get();
 

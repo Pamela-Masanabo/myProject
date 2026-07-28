@@ -18,9 +18,9 @@ use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\MaternityController;   
 use App\Models\Visit;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -37,20 +37,12 @@ Route::middleware('auth')->group(function () {
 | Admin
 |--------------------------------------------------------------------------
 */
-// Route::middleware(['auth','role:ADMIN'])
-// ->group(function () {
-//     Route::get('/admin/dashboard',
-//     [AdminController::class, 'index'])
-//     ->name('admin.dashboard');  
-
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth','role:ADMIN'])->group(function(){
 
     Route::get('/admin/dashboard',
         [AdminController::class,'dashboard']
     )->name('admin.dashboard');
-    
-//Route::get('/admin/register-staff',[AdminController::class,'create'])->name('staff.create');
-//Route::post('/admin/register-staff',[AdminController::class,'store'])->name('staff.store');
+
 });
 
 /*
@@ -59,7 +51,7 @@ Route::middleware(['auth'])->group(function(){
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:ADMIN'])->group(function () {     
 
     Route::get(
         '/admin/staff',

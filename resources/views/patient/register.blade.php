@@ -55,6 +55,7 @@
                     maxlength="13"
                     pattern="[0-9]{13}"
                     inputmode="numeric"
+                    placeholder="ID Number"
                     required>
 
                 <div class="grid">
@@ -95,21 +96,29 @@
 
                 </div>
 
-                <input
+<div class="grid">
 
+                    <input
                     type="text"
-
                     name="phone"
+                    placeholder="Phone Number"
+                    minlength="10"
+                    maxlength="10"
+                    pattern="[0-9]{10}"
+                    inputmode="numeric"
+                    required>       
 
-                    placeholder="Phone Number">
+                    <input
 
-                <textarea
+                        type="text"
 
-                    name="address"
+                        name="address"
 
-                    placeholder="Address">
+                        placeholder="Home Address"
 
-            </textarea>
+                        required>
+
+                </div>            
 
                 <button type="submit">
 
