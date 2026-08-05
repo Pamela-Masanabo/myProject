@@ -9,17 +9,18 @@ class ReceptionController extends Controller
     
 public function index()
 {
-    $visits = Visit::with('patient')
+    $queue = Visit::with('patient')
 
         ->whereDate('created_at', today())
 
         ->where('status', 'CHECKED_IN')
-
+        ->orderBy('queue_number')
         ->get();
 
-    return view('reception.dashboard',compact('visits')
+    return view('reception.dashboard', compact('queue'));
 
-    );
+
+
 }
 
 public function generateQueue(Visit $visit)
@@ -57,5 +58,20 @@ public function generateQueue(Visit $visit)
         'Queue number generated successfully.'
     );
 } 
+ public function sendToScreening(Visit $visit)
+{
+    $visit->update([
 
+        'status' => 'WAITING_SCREENING'
+
+    ]);
+
+    return back()->with(
+
+        'success',
+
+        'Patient sent to Screening.'
+
+    );
+}
 }

@@ -109,6 +109,31 @@
 
 </div>
 
+<form id="logoutForm" 
+
+      action="{{ route('patient.logout') }}" 
+
+      method="POST" 
+
+      style="display: none;">
+
+    @csrf
+
+</form>
+
+@if(session('success'))
+
+<script>
+
+    setTimeout(function () {
+     
+    document.getElementById('logoutForm').submit();
+    }, 3000); // 3000 milliseconds = 3 seconds  
+
+</script>
+
+@endif
+
 <!-- CHATBOT -->
 
 

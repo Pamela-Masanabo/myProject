@@ -112,4 +112,13 @@ class PatientController extends Controller
 
         return redirect()->route('patient.dashboard');
     }
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('patient_id');
+
+        return redirect()->route('patient.login');
+    }
+
+
 }

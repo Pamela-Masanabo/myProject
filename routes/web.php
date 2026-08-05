@@ -95,7 +95,10 @@ Route::middleware(['auth','role:RECEPTIONIST'])
 
         Route::get('/reception/dashboard',[ReceptionController::class,'index'])->name('reception.dashboard');
         Route::post('/reception/generate-queue/{visit}',[ReceptionController::class,'generateQueue'])->name('reception.generateQueue');   
-});
+        Route::patch('/reception/{visit}/screening',[ReceptionController::class,'sendToScreening']
+)->name('reception.screening');
+
+        });
 
 /*
 |--------------------------------------------------------------------------
@@ -242,7 +245,7 @@ Route::get('/patient/login',[PatientController::class,'showLogin'])->name('patie
 Route::post('/patient/login',[PatientController::class,'login'])->name('patient.login.store');
 Route::get('/patient/register',[PatientController::class,'create'])->name('patient.register');
 Route::post('/patient/register',[PatientController::class,'store'])->name('patient.store');
-
+Route::post('/patient/logout',[PatientController::class,'logout'])->name('patient.logout');
 Route::get('/patient/dashboard',[PatientController::class,'dashboard'])->name('patient.dashboard');
 
 //PATIENT HISTORY

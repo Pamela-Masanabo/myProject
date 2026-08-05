@@ -116,6 +116,27 @@ class VisitController extends Controller
             ])
             ->orderBy('queue_number')
             ->get();
+
+        // Get today's last queue number
+        $lastVisit = Visit::whereDate('created_at', today())
+            ->whereNotNull('queue_number')
+            ->orderByDesc('id')
+            ->first();
+
+        if ($lastVisit) {
+
+            // Remove the "A" and convert to number
+            $lastNumber = (int) substr($lastVisit->queue_number, 1);
+
+            $nextNumber = $lastNumber + 1;
+        } else {
+
+            $nextNumber = 1;
+        }
+
+        // Format: A001, A002, A003...
+        $queueNumber = 'A' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
         // Create visit
         Visit::create([
 
@@ -138,7 +159,7 @@ class VisitController extends Controller
 
             'status' => 'CHECKED_IN',
 
-            'queue_number' => null,
+            'queue_number' => $queueNumber,
 
         ]);
 
