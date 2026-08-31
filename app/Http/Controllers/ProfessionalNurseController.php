@@ -216,4 +216,14 @@ class ProfessionalNurseController extends Controller
             );
     }
 
+    public function consultation(Visit $visit)
+{
+    $visit->load('patient');
+
+    return view(
+        'professional_nurse.consultation',
+        compact('visit')
+    );
+}
+
 }

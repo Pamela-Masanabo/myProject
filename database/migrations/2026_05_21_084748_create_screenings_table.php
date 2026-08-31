@@ -29,7 +29,7 @@ return new class extends Migration
                 'HIGH',
                 'EMERGENCY'
                 ])->default('NORMAL');
-        //PEDIATRIC- CHILDREN UNDER 5
+    //PEDIATRIC- CHILDREN UNDER 5
                   $table->string('height')->nullable();
         //SCREENING DETAILS
                   $table->text('notes')->nullable();

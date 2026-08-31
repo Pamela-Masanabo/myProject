@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Visit;
 use App\Models\Screening;
-
+use Illuminate\Support\Facades\Auth;
 class ScreeningController extends Controller
 {
     public function dashboard(){
@@ -60,6 +60,8 @@ public function store(Request $request, Visit $visit)
     Screening::create([
 
         'visit_id' => $visit->id,
+
+        'user_id' => Auth::id(),
 
         'temperature' => $validated['temperature'],
 

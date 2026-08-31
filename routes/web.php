@@ -137,7 +137,7 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
      Route::get(
         '/professional-nurse/dashboard',
         [ProfessionalNurseController::class,'dashboard']
-    )->name('professional.dashboard');
+    )->name('professional_nurse.dashboard');
 
      Route::get(
         '/professional-nurse/consultation/{visit}',
@@ -148,6 +148,15 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
         '/professional-nurse/consultation/{visit}',
         [ProfessionalNurseController::class,'store']
     )->name('professional_nurse.store'); 
+    
+    Route::get(
+    '/professional-nurse/consultation/{visit}',
+    [ProfessionalNurseController::class, 'consultation']
+    )->name('professional.consultation');
+  
+    Route::post('/professional-nurse/consultation/{visit}',
+    [ProfessionalNurseController::class, 'store']
+    )->name('consultation.store');
 
     //Chronic Record
     Route::get(
