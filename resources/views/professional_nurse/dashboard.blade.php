@@ -34,7 +34,13 @@ Completed Today
 
 <li>
 
-Logout
+<form method="POST" action="{{ route('logout') }}">
+    @csrf
+
+    <button type="submit" class="logout-btn">
+        Logout
+    </button>
+</form>
 
 </li>
 
@@ -160,7 +166,7 @@ Action
 
 <td>
 
-<a href="{{ route('professional.consultation',$visit->id) }}">
+<a href="{{ route('professional_nurse.consultation',$visit->id) }}">
 
 <button class="consult-btn">
 

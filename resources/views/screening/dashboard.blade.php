@@ -6,101 +6,109 @@
     <title>General Screening Dashboard</title>
 
     <link rel="stylesheet"
-          href="{{ asset('css/screening-dashboard.css') }}">
+        href="{{ asset('css/screening-dashboard.css') }}">
 
 </head>
 
 <body>
 
-<div class="layout">
+    <div class="layout">
 
-    <!-- Sidebar -->
+        <!-- Sidebar -->
 
-    <div class="sidebar">
+        <div class="sidebar">
 
-        <h2>Screening Nurse</h2>
+            <h2>Screening Nurse</h2>
 
-        <ul>
+            <ul>
 
-            <li class="active">Waiting Patients</li>
+                <li class="active">Waiting Patients</li>
 
-            <li>Completed Today</li>
+                <li>Completed Today</li>
 
-            <li>Logout</li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-        </ul>
+                        <button type="submit" class="logout-btn">
+                            Logout
+                        </button>
+                    </form>
+                </li>
 
-    </div>
-
-    <!-- Main -->
-
-    <div class="main">
-
-        <h2>General Screening Dashboard</h2>
-
-        <p>Patients waiting for screening.</p>
-
-        <!-- Statistics -->
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h1>{{ $visits->count() }}</h1>
-
-                <p>Waiting Patients</p>
-
-            </div>
+            </ul>
 
         </div>
 
-        <!-- Waiting Patients -->
+        <!-- Main -->
 
-        <table>
+        <div class="main">
 
-            <tr>
+            <h2>General Screening Dashboard</h2>
 
-                <th>Queue</th>
+            <p>Patients waiting for screening.</p>
 
-                <th>Patient</th>
+            <!-- Statistics -->
 
-                <th>Age</th>
+            <div class="cards">
 
-                <th>Arrival</th>
+                <div class="card">
 
-                <th>Priority</th>
+                    <h1>{{ $visits->count() }}</h1>
 
-                <th>Action</th>
+                    <p>Waiting Patients</p>
 
-            </tr>
+                </div>
 
-            @forelse($visits as $visit)
+            </div>
 
-            <tr>
+            <!-- Waiting Patients -->
 
-                <td>
+            <table>
 
-                    <span class="queue">
+                <tr>
 
-                        {{ $visit->queue_number }}
+                    <th>Queue</th>
 
-                    </span>
+                    <th>Patient</th>
 
-                </td>
+                    <th>Age</th>
 
-                <td>
+                    <th>Arrival</th>
 
-                    {{ $visit->patient->first_name }}
+                    <th>Priority</th>
 
-                    {{ $visit->patient->last_name }}
+                    <th>Action</th>
 
-                </td>
+                </tr>
 
-                <td>
+                @forelse($visits as $visit)
 
-                    {{ \Carbon\Carbon::parse($visit->patient->date_of_birth)->age }}
+                <tr>
 
-                    @if(\Carbon\Carbon::parse($visit->patient->date_of_birth)->age >= 65)
+                    <td>
+
+                        <span class="queue">
+
+                            {{ $visit->queue_number }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        {{ $visit->patient->first_name }}
+
+                        {{ $visit->patient->last_name }}
+
+                    </td>
+
+                    <td>
+
+                        {{ \Carbon\Carbon::parse($visit->patient->date_of_birth)->age }}
+
+                        @if(\Carbon\Carbon::parse($visit->patient->date_of_birth)->age >= 65)
 
                         <span class="elderly">
 
@@ -108,57 +116,57 @@
 
                         </span>
 
-                    @endif
+                        @endif
 
-                </td>
+                    </td>
 
-                <td>
+                    <td>
 
-                    {{ $visit->created_at->format('H:i') }}
+                        {{ $visit->created_at->format('H:i') }}
 
-                </td>
+                    </td>
 
-                <td>
+                    <td>
 
-                    Waiting
+                        Waiting
 
-                </td>
+                    </td>
 
-                <td>
+                    <td>
 
-                    <a href="{{ route('screening.create',$visit->id) }}">
+                        <a href="{{ route('screening.create',$visit->id) }}">
 
-                        <button class="screen-btn">
+                            <button class="screen-btn">
 
-                            Screen
+                                Screen
 
-                        </button>
+                            </button>
 
-                    </a>
+                        </a>
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-            @empty
+                @empty
 
-            <tr>
+                <tr>
 
-                <td colspan="6">
+                    <td colspan="6">
 
-                    No patients waiting for screening.
+                        No patients waiting for screening.
 
-                </td>
+                    </td>
 
-            </tr>
+                </tr>
 
-            @endforelse
+                @endforelse
 
-        </table>
+            </table>
+
+        </div>
 
     </div>
-
-</div>
 
 </body>
 

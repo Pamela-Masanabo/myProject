@@ -18,7 +18,15 @@
             <ul>
                 <li class="active">Today's Check-ins</li>
                 <li>Patients</li>
-                <li>Logout</li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        <button type="submit" class="logout-btn">
+                            Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
 
         </div>

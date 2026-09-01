@@ -95,4 +95,11 @@ cursor:pointer;
 
 .consult-btn:hover{
 background:#2E7D32;
+}.logout-btn {  
+    border: none;
+     background: #1565C0;
+    color: white;   
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
 }

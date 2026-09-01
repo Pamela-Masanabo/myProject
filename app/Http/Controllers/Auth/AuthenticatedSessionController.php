@@ -58,7 +58,7 @@ switch ($user->role) {
 
     case 'PROFESSIONAL_NURSE':
 
-        return redirect()->route('professional.dashboard');
+        return redirect()->route('professional_nurse.dashboard');
 
 
     case 'DOCTOR':

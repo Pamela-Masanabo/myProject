@@ -173,3 +173,11 @@ th{
     font-weight:bold;
 
 }
+.logout-btn {  
+    border: none;
+     background: #0b5394;
+    color: white;   
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+}

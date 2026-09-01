@@ -14,7 +14,7 @@ class DoctorController extends Controller
         $visits = Visit::with([
             'patient',
             'screening',
-            'consultation',
+            'consultations',
             'referral'
         ])
         ->where('status','WAITING_DOCTOR')

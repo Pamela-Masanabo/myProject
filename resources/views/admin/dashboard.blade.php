@@ -183,15 +183,46 @@
 
                 <div class="quick-actions">
 
-                    <a href="#" class="action-card">Staff Management</a>
+                    <!-- STAFF MANAGEMENT -->
+                    <div class="quick-card">
+                        <h3>👥 Staff Management</h3>
+                        <p>Manage clinic staff accounts and access.</p>
 
-                    <a href="#" class="action-card">Room Management</a>
+                        <a href="{{ route('staff.index') }}" class="action-btn">
+                            Manage Staff
+                        </a>
 
-                    <a href="#" class="action-card">Reports</a>
+                        <a href="{{ route('staff.create') }}" class="action-btn secondary">
+                            + Add Staff
+                        </a>
+                    </div>
 
-                    <a href="{{ route('referrals.dashboard') }}" class="action-card">
-                        Referrals
-                    </a>
+
+                    <!-- ROOM MANAGEMENT -->
+                    <div class="quick-card">
+                        <h3>🏥 Room Management</h3>
+                        <p>Manage consultation, screening and other clinic rooms.</p>
+
+                       
+                    </div>
+
+
+                    <!-- REPORTS -->
+                    <div class="quick-card">
+                        <h3>📊 Reports</h3>
+                        <p>View clinic statistics and activity reports.</p>
+
+                        
+                    </div>
+
+
+                    <!-- REFERRALS -->
+                    <div class="quick-card">
+                        <h3>📄 Referrals</h3>
+                        <p>View and manage hospital referrals.</p>
+
+                       
+                    </div>
 
                 </div>
 

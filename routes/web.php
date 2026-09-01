@@ -152,7 +152,7 @@ Route::middleware(['auth','role:PROFESSIONAL_NURSE'])
     Route::get(
     '/professional-nurse/consultation/{visit}',
     [ProfessionalNurseController::class, 'consultation']
-    )->name('professional.consultation');
+    )->name('professional_nurse.consultation');
   
     Route::post('/professional-nurse/consultation/{visit}',
     [ProfessionalNurseController::class, 'store']

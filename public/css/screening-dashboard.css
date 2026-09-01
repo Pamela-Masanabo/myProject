@@ -123,3 +123,11 @@ tr:hover{
     font-size:11px;
     margin-left:8px;
 }
+.logout-btn {  
+    border: none;
+     background: #1565C0;
+    color: white;   
+    cursor: pointer;
+    font-size: 15px;
+    text-align: left;
+}
