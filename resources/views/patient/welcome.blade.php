@@ -1,87 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Public Clinic System</title>
-    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">   
+    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 </head>
+
 <body>
-<div class="background-languages">
+    <div class="watermark">
 
-    <span>Welcome</span>
+        <span>Welcome</span>
 
-    <span>Wamkelekile</span>
+        <span>Wamkelekile</span>
 
-    <span>Siyakwamukela</span>
+        <span>Siyakwamukela</span>
 
-    <span>Amogela</span>
+        <span>Hi mi amukela</span>
 
-    <span>Le amogetswe</span>
+        <span>Le amogetswe</span>
 
-    <span>Ri amukela</span>
+        <span>Ri amukela</span>
 
-    <span>Re a le amogela</span>
+        <span>Re a go amogela</span>
 
-    <span>Mi amukeriwile</span>
+        <span>Mi amukeriwile</span>
 
-    <span>Welkom</span>
+        <span>Welkom</span>
+        
+        <span>Nemukelekile</span>
+        <span>Mi amukeriwile</span>
+        <span>Ri a ni tanganedza</span>
 
-    <span>Nemukelekile</span>
+    </div>
 
-    <span>Amukelekile</span>
+    <div class="container">
 
-</div>
+        <div class="card">
 
-<div class="container">
+            <h1>🏥 Public Clinic System</h1>
 
-    <div class="card">
+            <p>
 
-        <h1>🏥 Public Clinic System</h1>
+                Your health, our priority.
 
-        <p>
+            </p>
 
-            Your health, our priority.
+            <a href="{{ route('patient.login') }}"
 
-        </p>
+                class="btn">
 
-        <a href="{{ route('patient.login') }}"
-
-           class="btn">
-
-            Login With ID Number
-
-        </a>
-
-        <p>
-
-            Are you new here?
-
-        </p>
-
-        <a href="{{ route('patient.register') }}"
-
-           class="btn secondary">
-
-            Register
-
-        </a>
-
-        <div class="staff-section">
-
-            <a href="/login"
-
-               class="staff-btn">
-
-                Staff
+                Login With ID Number
 
             </a>
+
+            <p>
+
+                Are you new here?
+
+            </p>
+
+            <a href="{{ route('patient.register') }}"
+
+                class="btn secondary">
+
+                Register
+
+            </a>
+
+            <div class="staff-section">
+
+                <a href="/login"
+
+                    class="staff-btn">
+
+                    Staff
+
+                </a>
+
+            </div>
 
         </div>
 
     </div>
-
-</div>
 
 </body>
 

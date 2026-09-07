@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfessionalNurseController;
 use App\Http\Controllers\ChronicController; 
 use App\Http\Controllers\KidsController;
 USE App\Http\Controllers\StaffController;
+USE App\Http\Controllers\RoomController;
 use App\Http\Controllers\PatientHistoryController;  
 use App\Http\Controllers\ReferralController;    
 use App\Http\Controllers\MaternityController;   
@@ -43,6 +44,23 @@ Route::middleware(['auth','role:ADMIN'])->group(function(){
         [AdminController::class,'dashboard']
     )->name('admin.dashboard');
 
+    Route::get('/admin/rooms', [RoomController::class, 'index'])
+        ->name('rooms.index');
+
+    Route::get('/admin/rooms/create', [RoomController::class, 'create'])
+        ->name('rooms.create');
+
+    Route::post('/admin/rooms', [RoomController::class, 'store'])
+        ->name('rooms.store');
+
+    Route::get('/admin/rooms/{room}/edit', [RoomController::class, 'edit'])
+        ->name('rooms.edit');
+
+    Route::put('/admin/rooms/{room}', [RoomController::class, 'update'])
+        ->name('rooms.update');
+
+    Route::patch('/admin/rooms/{room}/status', [RoomController::class, 'toggleStatus'])
+        ->name('rooms.status');
 });
 
 /*

@@ -282,6 +282,113 @@ tbody tr:hover{
     box-shadow:0 4px 10px rgba(0,0,0,.08);
 
 }
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 25px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.quick-actions h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #0755a5;
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.quick-action-card {
+    padding: 5px;
+}
+
+.quick-action-card h3 {
+    margin: 0 0 5px;
+    color: #1f2937;
+    font-size: 18px;
+}
+
+.quick-action-card p {
+    margin: 0 0 15px;
+    color: #4b5563;
+    line-height: 1.4;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.action-buttons a {
+    display: inline-block;
+    padding: 9px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+/* Manage button */
+
+.manage-btn {
+    background: #2563eb;
+    color: white !important;
+}
+
+.manage-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Add button */
+
+.add-btn {
+    background: #16a34a;
+    color: white !important;
+}
+
+.add-btn:hover {
+    background: #15803d;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .quick-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons a {
+        text-align: center;
+    }
+}
 
 .action-card:hover{
 

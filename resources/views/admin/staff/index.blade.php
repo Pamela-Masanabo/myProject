@@ -33,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="#">Room Management</a>
+                    <a href="{{ route('rooms.index') }}">Room Management</a>
                 </li>
 
                 <li>

@@ -25,11 +25,11 @@
                 </li>
 
                 <li>
-                    <a href="#">Staff Management</a>
+                    <a href="{{ route('staff.index') }}">Staff Management</a>
                 </li>
 
                 <li>
-                    <a href="#">Room Management</a>
+                    <a href="{{ route('rooms.index') }}">Room Management</a>
                 </li>
 
                 <li>
@@ -177,60 +177,97 @@
             </div>
 
             <!-- Quick Actions -->
-            <div class="section">
+            <h2>Quick Actions</h2>
 
-                <h2>Quick Actions</h2>
+            <div class="quick-actions-grid">
 
-                <div class="quick-actions">
+                <!-- STAFF MANAGEMENT -->
+                <div class="quick-action-card">
 
-                    <!-- STAFF MANAGEMENT -->
-                    <div class="quick-card">
-                        <h3>👥 Staff Management</h3>
-                        <p>Manage clinic staff accounts and access.</p>
+                    <h3>👥 Staff Management</h3>
 
-                        <a href="{{ route('staff.index') }}" class="action-btn">
+                    <p>
+                        Manage clinic staff accounts and access.
+                    </p>
+
+                    <div class="action-buttons">
+
+                        <a href="{{ route('staff.index') }}" class="manage-btn">
                             Manage Staff
                         </a>
 
-                        <a href="{{ route('staff.create') }}" class="action-btn secondary">
+                        <a href="{{ route('staff.create') }}" class="add-btn">
                             + Add Staff
                         </a>
-                    </div>
 
-
-                    <!-- ROOM MANAGEMENT -->
-                    <div class="quick-card">
-                        <h3>🏥 Room Management</h3>
-                        <p>Manage consultation, screening and other clinic rooms.</p>
-
-                       
-                    </div>
-
-
-                    <!-- REPORTS -->
-                    <div class="quick-card">
-                        <h3>📊 Reports</h3>
-                        <p>View clinic statistics and activity reports.</p>
-
-                        
-                    </div>
-
-
-                    <!-- REFERRALS -->
-                    <div class="quick-card">
-                        <h3>📄 Referrals</h3>
-                        <p>View and manage hospital referrals.</p>
-
-                       
                     </div>
 
                 </div>
 
-            </div>
 
+                <!-- ROOM MANAGEMENT -->
+                <div class="quick-action-card">
+
+                    <h3>🚪 Room Management</h3>
+
+                    <p>
+                        Manage consultation, screening and other clinic rooms.
+                    </p>
+
+                    <div class="action-buttons">
+
+                        <a href="{{ route('rooms.index') }}" class="manage-btn">
+                            Manage Rooms
+                        </a>
+
+                        <a href="{{ route('rooms.create') }}" class="add-btn">
+                            + Add Room
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REPORTS -->
+                <div class="quick-action-card">
+
+                    <h3>📊 Reports</h3>
+
+                    <p>
+                        View clinic statistics and activity reports.
+                    </p>
+
+                    <div class="action-buttons">
+
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- REFERRALS -->
+                <div class="quick-action-card">
+
+                    <h3>📄 Referrals</h3>
+
+                    <p>
+                        View and manage hospital referrals.
+                    </p>
+
+                    <div class="action-buttons">
+
+
+
+                    </div>
+
+                </div>
+            </div>
         </div>
 
     </div>
+
 
 </body>
 

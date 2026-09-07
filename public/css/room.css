@@ -1,0 +1,378 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 240px;
+    background: #1f2937;
+    color: white;
+    min-height: 100vh;
+    padding: 25px 15px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 8px;
+}
+
+.sidebar li,
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar li {
+    padding: 12px 15px;
+    border-radius: 6px;
+}
+
+.sidebar li.active {
+    background: #2563eb;
+}
+
+.sidebar li:hover {
+    background: #374151;
+}
+
+.sidebar li.active:hover {
+    background: #2563eb;
+}
+
+/* Logout button */
+
+.sidebar form {
+    margin: 0;
+}
+
+.sidebar button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: white;
+    text-align: left;
+    padding: 0;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.main {
+    flex: 1;
+    padding: 30px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+    margin-bottom: 25px;
+}
+
+.header h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    color: #1f2937;
+}
+
+.header p {
+    margin: 0;
+    color: #6b7280;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.actions a,
+.actions button {
+    display: inline-block;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Add / primary button */
+
+.actions a {
+    background: #2563eb;
+    color: white;
+}
+
+.actions a:hover {
+    background: #1d4ed8;
+}
+
+/* Submit button */
+
+.actions button {
+    background: #16a34a;
+    color: white;
+}
+
+.actions button:hover {
+    background: #15803d;
+}
+
+/* Cancel button */
+
+.actions a:last-child {
+    background: #6b7280;
+}
+
+.actions a:last-child:hover {
+    background: #4b5563;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.card form {
+    max-width: 700px;
+}
+
+.card label {
+    display: block;
+    margin-bottom: 7px;
+    margin-top: 18px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.card label:first-child {
+    margin-top: 0;
+}
+
+.card input,
+.card select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    background: white;
+}
+
+.card input:focus,
+.card select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th {
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: bold;
+    text-align: left;
+    padding: 14px;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+table td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+table tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   TABLE ACTIONS
+========================= */
+
+table td a {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    padding: 7px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+table td a:hover {
+    background: #1d4ed8;
+}
+
+table td form {
+    display: inline;
+}
+
+table td form button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+table td form button:hover {
+    background: #bb2d3b;
+}
+
+/* =========================
+   SUCCESS MESSAGE
+========================= */
+
+.success-message {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+    padding: 13px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.error-message {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    padding: 13px 16px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.error-message p {
+    margin: 4px 0;
+}
+
+.card form p {
+    color: #dc2626;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* =========================
+   ROOM STATUS
+========================= */
+
+.status-active {
+    display: inline-block;
+    background: #dcfce7;
+    color: #166534;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status-inactive {
+    display: inline-block;
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .main {
+        padding: 20px;
+        overflow-x: auto;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .actions {
+        flex-wrap: wrap;
+    }
+}
