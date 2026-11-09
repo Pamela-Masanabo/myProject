@@ -17,6 +17,7 @@ USE App\Http\Controllers\RoomController;
 use App\Http\Controllers\PatientHistoryController;  
 use App\Http\Controllers\ReferralController;    
 use App\Http\Controllers\MaternityController;   
+use App\Http\Controllers\ChatbotController;
 use App\Models\Visit;
 
 // Route::get('/', function () {
@@ -323,5 +324,14 @@ Route::post(
 )->name('referrals.complete');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| Chatbot
+|--------------------------------------------------------------------------
+*/   
+Route::post('/chatbot', [ChatbotController::class, 'chat'])
+    ->name('chatbot.chat');
+
 
 require __DIR__.'/auth.php';
