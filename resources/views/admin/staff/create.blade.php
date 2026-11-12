@@ -46,7 +46,7 @@
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>First Name</label>
 
@@ -58,7 +58,7 @@
 
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Last Name</label>
 
@@ -74,7 +74,7 @@
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Employee ID</label>
 
@@ -86,7 +86,7 @@
 
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Username</label>
 
@@ -102,7 +102,7 @@
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Email</label>
 
@@ -114,7 +114,7 @@
 
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Phone</label>
 
@@ -129,7 +129,7 @@
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Role</label>
 
@@ -152,7 +152,7 @@
 
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
 
     <label>Department</label>
 
@@ -184,7 +184,7 @@
                 </div>
 </div>
 
-            <!-- <div class="input-group">
+            <!-- <div class="form-group">
 
                 <label>Specialty</label>
 
@@ -197,7 +197,7 @@
 
             <div class="row">
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Password</label>
 
@@ -208,7 +208,7 @@
 
                 </div>
 
-                <div class="input-group">
+                <div class="form-group">
 
                     <label>Confirm Password</label>
 
@@ -221,7 +221,7 @@
 
             </div>
 
-            <div class="buttons">
+            <div class="button">
 
                 <button type="submit" class="save-btn">
 
