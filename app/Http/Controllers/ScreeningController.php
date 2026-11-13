@@ -8,16 +8,30 @@ use App\Models\Screening;
 use Illuminate\Support\Facades\Auth;
 class ScreeningController extends Controller
 {
-    public function dashboard(){
+    // public function dashboard(){
 
-        $visits = Visit::with('patient')
-            ->where('status','WAITING_SCREENING')
-            ->where('reason','GENERAL_CONSULTATION')
-            ->orderBy('queue_number')
-            ->get();
+    //     $visits = Visit::with('patient')
+    //         ->where('status','WAITING_SCREENING')
+    //         ->where('reason','GENERAL_CONSULTATION')
+    //         ->orderBy('queue_number')
+    //         ->get();
 
-        return view('screening.dashboard',compact('visits'));
-    }
+    //     return view('screening.dashboard',compact('visits'));
+    // }
+
+public function dashboard()
+{
+    $patients = Visit::with('patient')
+        ->whereDate('created_at', today())
+        ->whereIn('status', [
+            'WAITING_SCREENING',
+            'IN_SCREENING'
+        ])
+        ->orderBy('queue_number')
+        ->get();
+
+    return view('screening.dashboard', compact('patients'));
+}
 
     public function create(Visit $visit)
 {

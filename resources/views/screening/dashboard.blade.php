@@ -54,7 +54,7 @@
 
                 <div class="card">
 
-                    <h1>{{ $visits->count() }}</h1>
+                    <h1>{{ $patients->count() }}</h1>
 
                     <p>Waiting Patients</p>
 
@@ -82,7 +82,7 @@
 
                 </tr>
 
-                @forelse($visits as $visit)
+                @forelse($patients as $patient)
 
                 <tr>
 
@@ -90,7 +90,7 @@
 
                         <span class="queue">
 
-                            {{ $visit->queue_number }}
+                            {{ $patient->queue_number }}
 
                         </span>
 
@@ -98,17 +98,17 @@
 
                     <td>
 
-                        {{ $visit->patient->first_name }}
+                        {{ $patient->patient->first_name }}
 
-                        {{ $visit->patient->last_name }}
+                        {{ $patient->patient->last_name }}
 
                     </td>
 
                     <td>
 
-                        {{ \Carbon\Carbon::parse($visit->patient->date_of_birth)->age }}
+                        {{ \Carbon\Carbon::parse($patient->patient->date_of_birth)->age }}
 
-                        @if(\Carbon\Carbon::parse($visit->patient->date_of_birth)->age >= 65)
+                        @if(\Carbon\Carbon::parse($patient->patient->date_of_birth)->age >= 65)
 
                         <span class="elderly">
 
@@ -122,7 +122,7 @@
 
                     <td>
 
-                        {{ $visit->created_at->format('H:i') }}
+                        {{ $patient->created_at->format('H:i') }}
 
                     </td>
 
@@ -134,7 +134,7 @@
 
                     <td>
 
-                        <a href="{{ route('screening.create',$visit->id) }}">
+                        <a href="{{ route('screening.create',$patient->id) }}">
 
                             <button class="screen-btn">
 
