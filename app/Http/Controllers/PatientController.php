@@ -120,5 +120,20 @@ class PatientController extends Controller
         return redirect()->route('patient.login');
     }
 
+public function history()
+{
+    $patientId = session('patient_id');
+
+    if (!$patientId) {
+        return redirect()->route('patient.login');
+    }
+
+    $visits = \App\Models\Visit::where('patient_id', $patientId)
+        ->orderByDesc('created_at')
+        ->get();
+
+    return view('patient.history', compact('visits'));
+}
+
 
 }

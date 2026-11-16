@@ -101,10 +101,7 @@
 
         </a>
 
-        <a href="#" class="btn">
-           View History
-
-        </a>
+        <a href="{{ route('patient.history') }}" class="btn">View History </a>
 
     </div>
 

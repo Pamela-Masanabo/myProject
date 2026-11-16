@@ -277,9 +277,8 @@ Route::post('/patient/logout',[PatientController::class,'logout'])->name('patien
 Route::get('/patient/dashboard',[PatientController::class,'dashboard'])->name('patient.dashboard');
 
 //PATIENT HISTORY
-Route::get('/patient/history',[PatientHistoryController::class,'index']
-)->name('patient.history');
-
+Route::get('/patient/history', [PatientController::class, 'history'])
+    ->name('patient.history');
 /*
 |--------------------------------------------------------------------------
 | Referral
